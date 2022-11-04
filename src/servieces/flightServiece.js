@@ -49,9 +49,17 @@ const getFlight = async (flightNumber) => {
     }
 }
 
-const getAllFlight = async () => {
+const getAllFlight = async (data) => {
     try {
-        const response = await Flight.find();
+        let response;
+        if(data.sort && data.price){
+            response = await Flight.find().sort('price');
+        }else if(data.duration){
+            response = await Flight.find().sort('duration');
+        }else{
+            response = await Flight.find();
+        }
+        //
         return response;
     } catch (err) {
         console.log(err);
