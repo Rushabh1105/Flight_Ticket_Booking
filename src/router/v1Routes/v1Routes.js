@@ -3,6 +3,8 @@ const express = require("express");
 const airlineController = require("../../controller/airlineController");
 const flightController = require("../../controller/flightController");
 const reviewController = require("../../controller/reviewController");
+const bookingController = require("../../controller/bookingController");
+
 
 
 const router = express.Router();
@@ -27,5 +29,10 @@ router.post("/review", reviewController.createReview);
 router.get("/review/:flight/:user", reviewController.getReview);
 router.get("/review/:flight", reviewController.getAllReview);
 router.delete("/review", reviewController.destroyReview);
+
+router.post("/booking", bookingController.createBooking);
+router.get("/booking/:id", bookingController.getBoardingPass);
+router.delete("/booking/:id", bookingController.cancelBooking);
+
 
 module.exports = router;
